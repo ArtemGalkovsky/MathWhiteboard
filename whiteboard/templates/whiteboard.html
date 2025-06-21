@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Whiteboard{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/board.css' %}">
+
+    <script src="{% static 'js/libs/konva/konva.min.js' %}"></script>
+    <script src="{% static 'js/whiteboard/board.js' %}"></script>
+    <script src="{% static 'js/whiteboard.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div id="whiteboard_container"></div>
+{% endblock %}
