@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_with_header_menu.html' %}
 {% load static %}
 
 {% block title %}Whiteboard{% endblock %}
@@ -8,9 +8,63 @@
 
     <script src="{% static 'js/libs/konva/konva.min.js' %}"></script>
     <script src="{% static 'js/whiteboard/board.js' %}"></script>
+    <script src="{% static 'js/whiteboard/toolbar.js' %}"></script>
+    <script src="{% static 'js/whiteboard/shapes.js' %}"></script>
     <script src="{% static 'js/whiteboard.js' %}"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 {% endblock %}
 
 {% block body %}
-    <div id="whiteboard_container"></div>
+    <div id="whiteboard_container">
+        <div id="project_structure_menu">STRUCTURE</div>
+        <div id="canvas_container"></div>
+        <div id="element_details_menu">DETAILS</div>
+        <div id="toolbar">
+            <div id="toolbar_move" class="toolbar_action">
+                <button class="toolbar_button">Move</button>
+            </div>
+            <div id="toolbar_shape" class="toolbar_action">
+                <button class="toolbar_button toolbar_action_menu_button" data-menu-id="toolbar_shape_menu">Shape</button>
+                <div id="toolbar_shape_menu" class="toolbar_menu hidden">
+                    <button id="toolbar_shape_ellipse_button" class="toolbar_shape_button" data-shape="ellipse">Ellipse</button>
+                    <button id="toolbar_shape_rectangle_button" class="toolbar_shape_button" data-shape="rectangle">Rectangle</button>
+                    <button id="toolbar_shape_star_button" class="toolbar_shape_button" data-shape="star">Star</button>
+                    <button id="toolbar_shape_line_button" class="toolbar_shape_button" data-shape="line">Line</button>
+                    <button id="toolbar_shape_arc_button" class="toolbar_shape_button" data-shape="arc">Arc</button>
+                    <button id="toolbar_shape_arrow_button" class="toolbar_shape_button" data-shape="arrow">Arrow</button>
+                </div>
+            </div>
+            <div id="toolbar_text" class="toolbar_action">
+                <button class="toolbar_button">Text</button>
+            </div>
+            <div id="toolbar_simple_draw" class="toolbar_action">
+                <button class="toolbar_button">Draw</button>
+            </div>
+            <div id="toolbar_math_draw" class="toolbar_action">
+                <button class="toolbar_button">MathD</button>
+            </div>
+            <div id="toolbar_math_formula" class="toolbar_action">
+                <button class="toolbar_button toolbar_action_menu_button" data-menu-id="toolbar_math_formula_menu">Formulas</button>
+                <div id="toolbar_math_formula_menu" class="toolbar_menu hidden">
+                    Da
+                </div>
+            </div>
+            <div id="toolbar_comment" class="toolbar_action">
+                <button class="toolbar_button">Comment</button>
+            </div>
+            <div id="toolbar_zoom_plus" class="toolbar_action">
+                <button class="toolbar_button">Zoom+</button>
+            </div>
+            <div id="toolbar_zoom_minus" class="toolbar_action">
+                <button class="toolbar_button">Zoom-</button>
+            </div>
+            <div id="toolbar_settings" class="toolbar_action">
+                <button class="toolbar_button toolbar_action_menu_button" data-menu-id="toolbar_settings_menu">Settings</button>
+                <div id="toolbar_settings_menu" class="toolbar_menu hidden">
+                    Da
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

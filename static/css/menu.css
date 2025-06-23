@@ -1,0 +1,32 @@
+header, nav {
+    width: 100%;
+    height: 3em;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#header_right_menu, #header_left_menu {
+    display: flex;
+    flex-direction: row;
+}
+
+#header_right_menu {
+    justify-content: right;
+}
+
+#header_left_menu {
+    justify-content: left;
+}
+
+.header_menu_button {
+    margin: 0.7em;
+
+    border: none;
+    background: none;
+
+    cursor: pointer;
+}
