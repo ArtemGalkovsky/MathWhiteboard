@@ -55,11 +55,6 @@ class ShapesMenu {
             shape.points([x, y, x + 30, y])
         }
 
-        if (["rectangle"].includes(shapeType)) {
-            shape.width(30)
-            shape.height(30)
-        }
-
         return shape
     }
 

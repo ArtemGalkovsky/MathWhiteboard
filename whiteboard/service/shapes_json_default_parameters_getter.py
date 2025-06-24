@@ -1,6 +1,6 @@
 def get_shapes_default_parameters() -> dict:
     parameters = {
-        "rectangle": {"strokeScaleEnabled": True},
+        "rectangle": {"strokeScaleEnabled": True, "width": 30, "height": 20},
         "line": {"width": 1},
         "star": {"innerRadius": 5, "outerRadius": 10, "numPoints": 5},
         "arc": {"angle": 30, "clockwise": False, "innerRadius": 5, "outerRadius": 7},
