@@ -1,6 +1,7 @@
 class Toolbar {
-    constructor(board) {
+    constructor(board, detailsMenu) {
         this._board = board
+        this._detailsMenu = detailsMenu
 
         this._shapesMenu = new ShapesMenu(board)
     }

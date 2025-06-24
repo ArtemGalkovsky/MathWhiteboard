@@ -1510,7 +1510,7 @@
   const traceArrMax = 100;
   /**
    * Konva wrapper around native 2d canvas context. It has almost the same API of 2d context with some additional functions.
-   * With core Konva shapes you don't need to use this object. But you will use it if you want to create
+   * With core Konva shapes_menu you don't need to use this object. But you will use it if you want to create
    * a [custom shape](/docs/react/Custom_Shape.html) or a [custom hit regions](/docs/events/Custom_Hit_Region.html).
    * For full information about each 2d context API use [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
    * @constructor
@@ -2529,7 +2529,7 @@
   let idCounter$1 = 1;
   /**
    * Node constructor. Nodes are entities that can be transformed, layered,
-   * and have bound events. The stage, layers, groups, and shapes all extend Node.
+   * and have bound events. The stage, layers, groups, and shapes_menu all extend Node.
    * @constructor
    * @memberof Konva
    * @param {Object} config
@@ -2656,7 +2656,7 @@
       }
       /**
        *  cache node to improve drawing performance, apply filters, or create more accurate
-       *  hit regions. For all basic shapes size of cache canvas will be automatically detected.
+       *  hit regions. For all basic shapes_menu size of cache canvas will be automatically detected.
        *  If you need to cache your custom `Konva.Shape` instance you have to pass shape's bounding box
        *  properties. Look at [https://konvajs.org/docs/performance/Shape_Caching.html](https://konvajs.org/docs/performance/Shape_Caching.html) for more information.
        * @method
@@ -3978,7 +3978,7 @@
       getAbsoluteScale(top) {
           // do not cache this calculations,
           // because it use cache transform
-          // this is special logic for caching with some shapes with shadow
+          // this is special logic for caching with some shapes_menu with shadow
           let parent = this;
           while (parent) {
               if (parent._isUnderCache) {
@@ -4706,9 +4706,9 @@
       /**
        * create node with JSON string or an Object.  De-serializtion does not generate custom
        *  shape drawing functions, images, or event handlers (this would make the
-       *  serialized object huge).  If your app uses custom shapes, images, and
+       *  serialized object huge).  If your app uses custom shapes_menu, images, and
        *  event handlers (it probably does), then you need to select the appropriate
-       *  shapes after loading the stage and set these properties via on(), setSceneFunc(),
+       *  shapes_menu after loading the stage and set these properties via on(), setSceneFunc(),
        *  and setImage() methods
        * @method
        * @memberof Konva.Node
@@ -5131,7 +5131,7 @@
    */
   /**
    * get/set preventDefault
-   * By default all shapes will prevent default behavior
+   * By default all shapes_menu will prevent default behavior
    * of a browser on a pointer move or tap.
    * that will prevent native scrolling when you are trying to drag&drop a node
    * but sometimes you may need to enable default actions
@@ -5397,7 +5397,7 @@
        * layer.add(rect);
        * layer.add(shape1, shape2, shape3);
        * // empty arrays are accepted, though each individual child must be defined
-       * layer.add(...shapes);
+       * layer.add(...shapes_menu);
        * // remember to redraw layer if you changed something
        * layer.draw();
        */
@@ -5569,7 +5569,7 @@
           return node;
       }
       /**
-       * get all shapes that intersect a point.  Note: because this method must clear a temporary
+       * get all shapes_menu that intersect a point.  Note: because this method must clear a temporary
        * canvas and redraw every shape inside the container, it should only be used for special situations
        * because it performs very poorly.  Please use the {@link Konva.Stage#getIntersection} method if at all possible
        * because it performs much better
@@ -5579,7 +5579,7 @@
        * @param {Object} pos
        * @param {Number} pos.x
        * @param {Number} pos.y
-       * @returns {Array} array of shapes
+       * @returns {Array} array of shapes_menu
        */
       getAllIntersections(pos) {
           const arr = [];
@@ -5725,7 +5725,7 @@
                   maxY = Math.max(maxY, rect.y + rect.height);
               }
           });
-          // if child is group we need to make sure it has visible shapes inside
+          // if child is group we need to make sure it has visible shapes_menu inside
           const shapes = this.find('Shape');
           let hasVisible = false;
           for (let i = 0; i < shapes.length; i++) {
@@ -6683,7 +6683,7 @@
       }
       // currently cache function is now working for stage, because stage has no its own canvas element
       cache() {
-          Util.warn('Cache function is not allowed for stage. You may use cache only for layers, groups and shapes.');
+          Util.warn('Cache function is not allowed for stage. You may use cache only for layers, groups and shapes_menu.');
           return this;
       }
       clearCache() {
@@ -7072,7 +7072,7 @@
           return this.strokeEnabled() && !!width;
       }
       /**
-       * determines if point is in the shape, regardless if other shapes are on top of it.  Note: because
+       * determines if point is in the shape, regardless if other shapes_menu are on top of it.  Note: because
        *  this method clears a temporary canvas and then redraws the shape, it performs very poorly if executed many times
        *  consecutively.  Please use the {@link Konva.Stage#getIntersection} method if at all possible
        *  because it performs much better
@@ -8393,7 +8393,7 @@
   ], INTERSECTION_OFFSETS_LEN = INTERSECTION_OFFSETS.length;
   /**
    * Layer constructor.  Layers are tied to their own canvas element and are used
-   * to contain groups or shapes.
+   * to contain groups or shapes_menu.
    * @constructor
    * @memberof Konva
    * @augments Konva.Container
@@ -8430,7 +8430,7 @@
    * @example
    * var layer = new Konva.Layer();
    * stage.add(layer);
-   * // now you can add shapes, groups into the layer
+   * // now you can add shapes_menu, groups into the layer
    */
   class Layer extends Container {
       constructor(config) {
@@ -8583,7 +8583,7 @@
       _validateAdd(child) {
           const type = child.getType();
           if (type !== 'Group' && type !== 'Shape') {
-              Util.throw('You may only add groups and shapes to a layer.');
+              Util.throw('You may only add groups and shapes_menu to a layer.');
           }
       }
       _toKonvaCanvas(config) {
@@ -8866,7 +8866,7 @@
 
   /**
    * FastLayer constructor. **DEPRECATED!** Please use `Konva.Layer({ listening: false})` instead. Layers are tied to their own canvas element and are used
-   * to contain shapes only.  If you don't need node nesting, mouse and touch interactions,
+   * to contain shapes_menu only.  If you don't need node nesting, mouse and touch interactions,
    * or event pub/sub, you should use FastLayer instead of Layer to create your layers.
    * It renders about 2x faster than normal layers.
    *
@@ -8894,7 +8894,7 @@
   _registerNode(FastLayer);
 
   /**
-   * Group constructor.  Groups are used to contain shapes or other groups.
+   * Group constructor.  Groups are used to contain shapes_menu or other groups.
    * @constructor
    * @memberof Konva
    * @augments Konva.Container
@@ -8933,7 +8933,7 @@
       _validateAdd(child) {
           const type = child.getType();
           if (type !== 'Group' && type !== 'Shape') {
-              Util.throw('You may only add groups and shapes to groups.');
+              Util.throw('You may only add groups and shapes_menu to groups.');
           }
       }
   }
@@ -15691,7 +15691,7 @@
   let activeTransformersCount = 0;
   /**
    * Transformer constructor.  Transformer is a special type of group that allow you transform Konva
-   * primitives and shapes. Transforming tool is not changing `width` and `height` properties of nodes
+   * primitives and shapes_menu. Transforming tool is not changing `width` and `height` properties of nodes
    * when you resize them. Instead it changes `scaleX` and `scaleY` properties.
    * @constructor
    * @memberof Konva
@@ -15929,7 +15929,7 @@
               y: 0,
           });
       }
-      // returns box + rotation of all shapes
+      // returns box + rotation of all shapes_menu
       __getNodeRect() {
           const node = this.getNode();
           if (!node) {
@@ -15983,10 +15983,10 @@
               height: maxY - minY,
               rotation: Konva$2.getAngle(this.rotation()),
           };
-          // const shapes = this.nodes().map(node => {
+          // const shapes_menu = this.nodes().map(node => {
           //   return this.__getNodeShape(node);
           // });
-          // const box = getShapesRect(shapes);
+          // const box = getShapesRect(shapes_menu);
           // return rotateAroundPoint(box, Konva.getAngle(this.rotation()), {
           //   x: 0,
           //   y: 0

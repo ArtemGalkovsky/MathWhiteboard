@@ -110,10 +110,10 @@ Add DOM definitions into your `tsconfig.json`:
 import Konva from 'konva/lib/Core';
 // Now you have a Konva object with Stage, Layer, FastLayer, Group, Shape and some additional utils function.
 // Also core currently already have support for drag&drop and animations.
-// BUT there are no shapes (rect, circle, etc), no filters.
+// BUT there are no shapes_menu (rect, circle, etc), no filters.
 
 // but you can simply add anything you need:
-import { Rect } from 'konva/lib/shapes/Rect';
+import { Rect } from 'konva/lib/shapes_menu/Rect';
 // importing a shape will automatically inject it into Konva object
 
 var rect1 = new Rect();

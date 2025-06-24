@@ -1,3 +1,14 @@
+const shapesClasses = Object.freeze({
+    rectangle: Konva.Rect,
+    arc: Konva.Arc,
+    ellipse: Konva.Ellipse,
+    circle: Konva.Circle,
+    line: Konva.Line,
+    polygon: Konva.RegularPolygon,
+    star: Konva.Star,
+    arrow: Konva.Arrow,
+})
+
 class ShapesMenu {
     constructor(board) {
         this._board = board
@@ -6,6 +17,18 @@ class ShapesMenu {
         this._currentWorkingShape = null
 
         this._boardPointerDownHandler = this.#pointerDownHandler.bind(this)
+
+        this.#setShapesDefaultParametersField()
+    }
+
+    #setShapesDefaultParametersField() {
+        const parametersScriptJson = document.querySelector("#default_shapes_json")
+
+        if (!parametersScriptJson) {
+            throw new Error(`Unable to set shapesDefault parameters`)
+        }
+
+        this._shapesDefaultParameters = JSON.parse(parametersScriptJson.textContent)
     }
 
     setup() {
@@ -24,9 +47,6 @@ class ShapesMenu {
         const shape = this.#getDefaultShape(shapeType)
 
         shape.draggable(true)
-        shape.stroke("black")
-        shape.fill("yellow")
-        shape.strokeScaleEnabled(false)
 
         if (["star", "ellipse", "rectangle", "arc"].includes(shapeType)) {
             shape.x(x)
@@ -44,34 +64,7 @@ class ShapesMenu {
     }
 
     #getDefaultShape(shapeType) {
-        switch (shapeType) {
-            case "ellipse":
-                return new Konva.Ellipse({
-                    radiusX: 10,
-                    radiusY: 10,
-                })
-            case "line":
-                return new Konva.Line({
-                    width: 1,
-                })
-            case "star":
-                return new Konva.Star({
-                    innerRadius: 5,
-                    outerRadius: 10,
-                    numPoints: 5,
-                })
-            case "rectangle":
-                return new Konva.Rect({})
-            case "arc":
-                return new Konva.Arc({
-                    angle: 30,
-                    clockwise: false,
-                    innerRadius: 5,
-                    outerRadius: 10,
-                })
-            case "arrow":
-                return new Konva.Arrow({})
-        }
+       return new shapesClasses[shapeType](this._shapesDefaultParameters[shapeType])
     }
 
     #configureShape(shapeObject) {
