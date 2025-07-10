@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'MathWhiteboard',
         'USER': 'postgres',
         'PASSWORD': 'rioLiteop',
-        'HOST': '193.180.215.244',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }
