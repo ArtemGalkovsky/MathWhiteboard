@@ -9,6 +9,7 @@
     {% block head %}{% endblock %}
 </head>
 <body>
+    {% csrf_token %}
     {% block body %}{% endblock %}
 </body>
 </html>

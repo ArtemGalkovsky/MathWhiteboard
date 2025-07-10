@@ -1,0 +1,37 @@
+{% extends 'base_with_header_menu.html' %}
+
+{% block title %}Find your new friend!{% endblock %}
+
+{% block body %}
+    <form method="get">
+         <div id="find_friend_form">
+            {{ form.query.label_tag }}
+            {{ form.query }}
+            {% if form.query.errors %}
+                <div class="">
+                    {{ form.query.errors }}
+                </div>
+            {% endif %}
+             <button type="submit">Сабмит</button>
+        </div>
+    </form>
+    <div class="find_friend_results">
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+        {% for user in users %}
+            <div class="user">
+                <h4>{{ user.username }}</h4>
+                <form action="{% url 'accounts:send_friend_request' user.id %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <button type="submit">+ (Send Friend Request)</button>
+                </form>
+            </div>
+        {% endfor %}
+        {% if found %}
+            No guys, no girls, sorry, no helicopters :(
+        {% endif %}
+    </div>
+{% endblock %}

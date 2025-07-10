@@ -1,11 +1,13 @@
 <header>
     <nav>
         <div id="header_left_menu">
-            <button id="home_button" class="header_menu_button">Home</button>
+            <button id="home_button" class="header_menu_button" data-url="{% url 'accounts:index' %}">Home</button>
             <button id="my_boards_button" class="header_menu_button">My Boards</button>
         </div>
         <div id="header_right_menu">
+            <button id="friend_search_button" data-url="{% url 'accounts:friend_search' %}" class="header_menu_button">Friends</button>
             <button id="account_button" class="header_menu_button">Account</button>
+            <button id="friends_requests" class="header_menu_button" data-url="{% url 'accounts:friendship_requests' %}">Friend's requests</button>
         </div>
     </nav>
 </header>

@@ -1,0 +1,22 @@
+{% extends 'base_with_header_menu.html' %}
+{% load static %}
+
+{% block title %}Friendship requests{% endblock %}
+
+{% block head %}
+    <script src="{% static 'js/friendship_response.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div id="friendship_requests_container">
+        {% for request in requests %}
+            <div class="friendship_request_container" data-id={{ request.id }}>
+                <h3>{{ request.sender }} отправил вам дружбочку {{ request.created_at }}</h3>
+                <div class="friendship_request_buttons">
+                    <button id="accept_button" class="friendship_requests_button" data-url="{% url 'accounts:friendship_accept' request.id %}" data-request-id="{{ request.id }}">Accept</button>
+                    <button id="reject_button" class="friendship_requests_button" data-url="{% url 'accounts:friendship_reject' request.id %}" data-request-id="{{ request.id }}">Reject</button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

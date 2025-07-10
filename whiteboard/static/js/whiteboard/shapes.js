@@ -65,6 +65,7 @@ class ShapesMenu {
     #configureShape(shapeObject) {
         shapeObject.on("pointerdown", (e) => {
             this._board.transformer.nodes([e.target])
+            console.log(JSON.stringify(e.target))
         })
     }
 
