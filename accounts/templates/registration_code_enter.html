@@ -1,0 +1,15 @@
+{% extends "base_with_header_menu.html" %}
+
+{% block body %}
+    <form action="{% url 'accounts:registration_set_password' %}" enctype="application/x-www-form-urlencoded" method="post">
+        {% csrf_token %}
+
+        {{ form.code.label_tag }}
+        {{ form.code }}
+        {% for error in form.code.errors %}
+            {{ error }}
+        {% endfor %}
+
+        <button type="submit">Register</button>
+    </form>
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import index, search_friend, send_friend_request, friendship_requests, friendship_request_accept, \
-    friendship_request_reject, registration, send_code
+    friendship_request_reject, UserRegistrationView, send_code, UserEnterRegistrationCodeView, \
+    UserSetPasswordRegistrationView
 
 app_name = "accounts"
 
@@ -11,6 +12,8 @@ urlpatterns = [
     path("friendship_requests/", friendship_requests, name="friendship_requests"),
     path("friendship_accept/<int:invite_id>/", friendship_request_accept, name="friendship_accept"),
     path("friendship_reject/<int:invite_id>/", friendship_request_reject, name="friendship_reject"),
-    path("register/", registration, name="register"),
-    path("send_code/", send_code, name="send_code")
+    path("register/", UserRegistrationView.as_view(), name="register"),
+    path("send_code/", send_code, name="send_code"),
+    path("enter_registration_code/", UserEnterRegistrationCodeView.as_view(), name="enter_registration_code"),
+    path("registration_set_password/", UserSetPasswordRegistrationView.as_view(), name="registration_set_password")
 ]
