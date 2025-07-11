@@ -16,7 +16,6 @@ class User(AbstractUser):
         ("Friends", "Opened only for friends"),
         ("Private", "Private"),
     )
-    pidoras = models.BooleanField(default=True)
     avatar = models.ImageField(upload_to="avatar", null=True, blank=True)
     bio = models.CharField(max_length=1500, null=True, blank=True)
     privacy_policy = models.CharField(max_length=15,
