@@ -18,7 +18,7 @@ def index(request: HttpRequest) -> HttpResponse:
 def search_friend(request: HttpRequest) -> HttpResponse:
     form = FriendSearchForm(request.GET)
 
-    found = True
+    found = False
     users = ()
     if form.is_valid():
         query = form.cleaned_data.get("query")
@@ -27,7 +27,7 @@ def search_friend(request: HttpRequest) -> HttpResponse:
             users = User.objects.filter(username__icontains=query) \
                 .exclude(id=request.user.id)
             if not users:
-                found = False
+                found = True
     else:
         form = FriendSearchForm()
 
