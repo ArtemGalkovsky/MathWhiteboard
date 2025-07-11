@@ -11,10 +11,14 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+from os import environ
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-LOGIN_URL = 'http://127.0.0.1:8000/admin/login/?next=/admin/'
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -77,28 +81,18 @@ WSGI_APPLICATION = 'MathWhiteboard.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-# PostgreSQL settings
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'MathWhiteboard',
-#         'USER': 'postgres',
-#         'PASSWORD': 'rioLiteop',
-#         'HOST': 'db',
-#         'PORT': '5432',
-#     }
-# }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'white',
+        'NAME': 'MathWhiteboard',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
+        'PASSWORD': 'rioLiteop',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -144,3 +138,11 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = environ['POSTFIX_HOST']
+EMAIL_PORT = int(environ.get('POSTFIX_PORT', 587))
+EMAIL_HOST_USER = environ.get('POSTFIX_USER')
+EMAIL_HOST_PASSWORD = environ.get('POSTFIX_PASSWORD')
+DEFAULT_FROM_EMAIL = f'noreply@{EMAIL_HOST}'

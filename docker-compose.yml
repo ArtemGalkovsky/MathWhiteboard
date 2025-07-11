@@ -1,5 +1,6 @@
 version: '3.8'
 
+name: MathWhiteboard
 services:
   web:
     build: .
@@ -12,13 +13,8 @@ services:
   db:
     image: postgres:14.18
     volumes:
-      - postgres_data:/postgres
+      - /home/:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=rioLiteop
       - POSTGRES_DB=MathWhiteboard
-    ports:
-      - "5432:5432"
-
-volumes:
-  postgres_data:

@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from accounts.models import User
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods
@@ -7,7 +8,6 @@ from accounts.forms import FriendSearchForm
 from django.http import HttpRequest, HttpResponse, HttpResponseForbidden
 from .models import FriendshipInvite, Friendship
 from MathWhiteboard.config import ACCOUNTS_HANDLE_FRIENDSHIP_REQUEST_NO_PERMISSION
-
 
 # Create your views here.
 def index(request: HttpRequest) -> HttpResponse:
@@ -84,3 +84,17 @@ def friendship_request_reject(request: HttpRequest, invite_id: int) -> HttpRespo
     invite.reject()
 
     return redirect("accounts:friendship_requests")
+
+def registration(request: HttpRequest) -> HttpResponse:
+    return render(request, "registration.html")
+
+def send_code(request: HttpRequest) -> HttpResponse:
+    send_mail(
+        'Subject here',
+        'Here is the message body.',
+        'no-reply@forgottensymbols.moscow',  # Overrides DEFAULT_FROM_EMAIL if provided
+        ['steamliteops@proton.me'],
+        fail_silently=False,  # Set to True to suppress exceptions on failure
+    )
+
+    return redirect("accounts:index")
