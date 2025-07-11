@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from accounts.models import User
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods
 from django.shortcuts import render, get_object_or_404, redirect
@@ -26,7 +26,8 @@ def search_friend(request: HttpRequest) -> HttpResponse:
         if query:
             users = User.objects.filter(username__icontains=query) \
                 .exclude(id=request.user.id)
-            found = True
+            if not users:
+                found = True
     else:
         form = FriendSearchForm()
 
