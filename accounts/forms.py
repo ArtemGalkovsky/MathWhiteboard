@@ -2,7 +2,6 @@ from django import forms
 from .models import TeamsInvite, Friendship
 from django.forms import ValidationError
 from MathWhiteboard.config import ACCOUNTS_REGISTRATION_CODE_LENGTH
-from .service.registration_utls import get_registration_code_from_email, get_hash_from_email
 
 class RoomInviteForm(forms.ModelForm):
     class Meta:

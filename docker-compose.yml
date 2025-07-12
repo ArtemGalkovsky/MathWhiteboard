@@ -12,7 +12,7 @@ services:
   db:
     image: postgres:14.18
     volumes:
-      - /home/:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=rioLiteop
@@ -21,8 +21,9 @@ services:
   redis:
       image: redis:8.0.3
       volumes:
-        - redis_data:/data
+        - redis_data:/home/redis_data
       restart: unless-stopped
 
 volumes:
   redis_data:
+  postgres_data:

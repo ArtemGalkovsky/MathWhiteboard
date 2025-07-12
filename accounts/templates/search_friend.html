@@ -30,7 +30,7 @@
                 </form>
             </div>
         {% endfor %}
-        {% if not found%}
+        {% if form.query.value and not users %}
             No guys, no girls, sorry, no helicopters :(
         {% endif %}
     </div>
