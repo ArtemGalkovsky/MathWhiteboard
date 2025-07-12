@@ -5,9 +5,8 @@ from django.views.decorators.http import require_http_methods
 from django.shortcuts import render, get_object_or_404, redirect
 from accounts.forms import FriendSearchForm
 from django.http import HttpRequest, HttpResponse, HttpResponseForbidden
-from .models import FriendshipInvite, Friendship
+from ..models import FriendshipInvite, Friendship
 from MathWhiteboard.config import ACCOUNTS_HANDLE_FRIENDSHIP_REQUEST_NO_PERMISSION
-
 
 # Create your views here.
 def index(request: HttpRequest) -> HttpResponse:
@@ -18,7 +17,6 @@ def index(request: HttpRequest) -> HttpResponse:
 def search_friend(request: HttpRequest) -> HttpResponse:
     form = FriendSearchForm(request.GET)
 
-    found = False
     users = ()
     if form.is_valid():
         query = form.cleaned_data.get("query")
@@ -26,12 +24,10 @@ def search_friend(request: HttpRequest) -> HttpResponse:
         if query:
             users = User.objects.filter(username__icontains=query) \
                 .exclude(id=request.user.id)
-            if not users:
-                found = True
     else:
         form = FriendSearchForm()
 
-    context = {"form": form, "users": users, "found": found}
+    context = {"form": form, "users": users}
     return render(request, "search_friend.html",
                   context)
 
@@ -84,3 +80,4 @@ def friendship_request_reject(request: HttpRequest, invite_id: int) -> HttpRespo
     invite.reject()
 
     return redirect("accounts:friendship_requests")
+
